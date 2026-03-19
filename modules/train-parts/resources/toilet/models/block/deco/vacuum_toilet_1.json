@@ -1,5 +1,5 @@
 {
-    "loader": "forge:obj",
+    "loader": "neoforge:obj",
     "flip_v": true,
     "render_type": "translucent",
     "model": "kuayue:models/block/deco/vacuum_toilet_1.obj",

@@ -1,5 +1,5 @@
 {
-    "loader": "forge:obj",
+    "loader": "neoforge:obj",
     "model": "kuayue:models/block/df5/df5_radiator_grid.obj",
     "render_type": "cutout_mipped",
     "flip_v": true,

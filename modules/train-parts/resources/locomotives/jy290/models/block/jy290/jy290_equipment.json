@@ -1,5 +1,5 @@
 {
-    "loader": "forge:obj",
+    "loader": "neoforge:obj",
     "model": "kuayue:models/block/jy290/jy290_equipment.obj",
     "render_type": "cutout_mipped",
     "flip_v": true,

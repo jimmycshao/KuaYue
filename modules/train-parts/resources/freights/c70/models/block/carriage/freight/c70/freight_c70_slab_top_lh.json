@@ -1,5 +1,5 @@
 {
-    "loader": "forge:obj",
+    "loader": "neoforge:obj",
     "flip_v": true,
     "render_type": "translucent",
     "model": "kuayue:models/block/carriage/freight/c70/freight_c70_slab_top_lh.obj",

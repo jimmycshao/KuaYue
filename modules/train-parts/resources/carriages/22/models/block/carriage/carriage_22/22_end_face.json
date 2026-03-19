@@ -1,5 +1,5 @@
 {
-    "loader": "forge:obj",
+    "loader": "neoforge:obj",
     "flip_v": true,
     "model": "kuayue:models/block/carriage/carriage_22/22_end_face.obj",
     "textures": {

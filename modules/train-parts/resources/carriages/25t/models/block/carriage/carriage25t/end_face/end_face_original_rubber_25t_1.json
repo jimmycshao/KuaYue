@@ -1,5 +1,5 @@
 {
-    "loader": "forge:obj",
+    "loader": "neoforge:obj",
     "flip_v": true,
     "model": "kuayue:models/block/carriage/carriage25t/end_face/end_face_original_rubber_25t_1.obj",
     "textures": {

@@ -1,5 +1,5 @@
 {
-    "loader": "forge:obj",
+    "loader": "neoforge:obj",
     "model": "kuayue:models/block/df5/carport/df5_carport_grille.obj",
     "render_type": "cutout_mipped",
     "flip_v": true,

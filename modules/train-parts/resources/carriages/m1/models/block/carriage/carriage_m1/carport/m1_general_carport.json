@@ -1,5 +1,5 @@
 {
-    "loader": "forge:obj",
+    "loader": "neoforge:obj",
     "flip_v": true,
     "render_type": "cutout_mipped",
     "model": "kuayue:models/block/carriage/carriage_m1/carport/m1_general_carport.obj",

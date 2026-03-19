@@ -1,5 +1,5 @@
 {
-    "loader": "forge:obj",
+    "loader": "neoforge:obj",
     "model": "kuayue:models/block/df5/df5_cowcatcher.obj",
     "render_type": "cutout_mipped",
     "flip_v": true,

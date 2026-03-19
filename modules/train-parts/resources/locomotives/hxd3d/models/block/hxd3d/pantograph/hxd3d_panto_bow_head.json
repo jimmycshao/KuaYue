@@ -1,5 +1,5 @@
 {
-    "loader": "forge:obj",
+    "loader": "neoforge:obj",
     "model": "kuayue:models/block/hxd3d/pantograph/hxd3d_panto_bow_head.obj",
     "flip_v": true,
     "textures": {
