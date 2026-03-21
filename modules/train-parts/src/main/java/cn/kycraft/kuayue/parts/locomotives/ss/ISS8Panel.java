@@ -34,7 +34,9 @@ public class ISS8Panel {
             new PanelReg<>("ss8_windows_small", p -> new TrainUnOpenableWindowBlock(p, 1)).setParent(GROUP_SS8);
 
     public static final BlockReg<SS8CowCatcherBlock> SS8_COWCATCHER =
-            BlockReg.of("ss8_cowcatcher", SS8CowCatcherBlock::new).setParent(GROUP_SS8);
+            BlockReg.of("ss8_cowcatcher", SS8CowCatcherBlock::new)
+                    .withDefaultBlockItem("ss8_cowcatcher")
+                    .setParent(GROUP_SS8);
 
     public static final SlabReg<HingeSlabBlock> SS8_CARPORT = new SlabReg<>("ss8_carport", p -> new HingeSlabBlock(p, true)).setParent(GROUP_SS8);
     public static final SlabReg<HingeSlabBlock> SS8_CARPORT_AD = new SlabReg<>("ss8_carport_ad", p -> new HingeSlabBlock(p, true)).setParent(GROUP_SS8);
@@ -48,8 +50,12 @@ public class ISS8Panel {
     public static final PanelReg<TrainHingePanelBlock> SS8_PANEL_BOTTOM = new PanelReg<>("ss8_panel_bottom", TrainHingePanelBlock::new).setParent(GROUP_SS8);
     public static final PanelReg<TrainHingePanelBlock> SS8_PANEL_UPPER = new PanelReg<>("ss8_panel_upper", TrainHingePanelBlock::new).setParent(GROUP_SS8);
 
-    public static final BlockReg<HeadBlock> SS8_HEAD = BlockReg.of("ss8_head", HeadBlock::new).setParent(GROUP_SS8);
-    public static final BlockReg<FullShapeDirectionalBlock> SS8_TRANSFORMER = BlockReg.of("ss8_transformer", FullShapeDirectionalBlock::new).setParent(GROUP_SS8);
+    public static final BlockReg<HeadBlock> SS8_HEAD = BlockReg.of("ss8_head", HeadBlock::new)
+            .withDefaultBlockItem("ss8_head")
+            .setParent(GROUP_SS8);
+    public static final BlockReg<FullShapeDirectionalBlock> SS8_TRANSFORMER = BlockReg.of("ss8_transformer", FullShapeDirectionalBlock::new)
+            .withDefaultBlockItem("ss8_transformer")
+            .setParent(GROUP_SS8);
 
     public static final SlabReg<HingeSlabBlock> SS8_ROOF = new SlabReg<>("ss8_roof", p -> new HingeSlabBlock(p, true)).setParent(GROUP_SS8);
     public static final SlabReg<SlabBlock> SS8_CARPORT_CENTER = new SlabReg<>("ss8_carport_center", p -> new SlabBlock(p, true)).setParent(GROUP_SS8);

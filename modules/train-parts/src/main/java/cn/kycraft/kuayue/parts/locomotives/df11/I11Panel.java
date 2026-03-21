@@ -35,10 +35,14 @@ public class I11Panel {
             ).setParent(KuaYueTrainPanelModule.REGISTRY_GROUP);
 
     public static final BlockReg<DF11CowCatcherBlock> DF11_COWCATCHER =
-            BlockReg.of("df11_cowcatcher", DF11CowCatcherBlock::new).setParent(GROUP_DF11);
+            BlockReg.of("df11_cowcatcher", DF11CowCatcherBlock::new)
+                    .withDefaultBlockItem("df11_cowcatcher")
+                    .setParent(GROUP_DF11);
 
     public static final BlockReg<FullShapeDirectionalBlock> DF11_HEAD =
-            BlockReg.of("df11_head", FullShapeDirectionalBlock::new).setParent(GROUP_DF11);
+            BlockReg.of("df11_head", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("df11_head")
+                    .setParent(GROUP_DF11);
 
     public static final SlabReg<SlabBlock> DF11_FLOOR =
             new SlabReg<>("df11_floor", p -> new SlabBlock(p, false)).setParent(GROUP_DF11);
@@ -65,7 +69,9 @@ public class I11Panel {
             new SlabReg<>("df11_chimney", p -> new DF11ChimneyBlock(p, false)).setParent(GROUP_DF11);
 
     public static final BlockReg<FullShapeDirectionalBlock> DF11_RESERVOIR_TANK =
-            BlockReg.of("df11_reservoir_tank", FullShapeDirectionalBlock::new).setParent(GROUP_DF11);
+            BlockReg.of("df11_reservoir_tank", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("df11_reservoir_tank")
+                    .setParent(GROUP_DF11);
 
     public static final PanelReg<CustomRenderedDoorBlock> DF11_DOOR =
             new PanelReg<>("df11_door", p -> new CustomRenderedDoorBlock(

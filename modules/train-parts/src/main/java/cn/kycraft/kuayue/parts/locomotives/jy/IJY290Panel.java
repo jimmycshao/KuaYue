@@ -25,11 +25,17 @@ public class IJY290Panel {
             ).setParent(KuaYueTrainPanelModule.REGISTRY_GROUP);
 
     public static final BlockReg<FullShapeDirectionalBlock> JY290_HEAD_2 =
-            BlockReg.of("jy290_head_2", FullShapeDirectionalBlock::new).setParent(GROUP_JY290);
+            BlockReg.of("jy290_head_2", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("jy290_head_2")
+                    .setParent(GROUP_JY290);
     public static final BlockReg<FullShapeDirectionalBlock> JY290_HEAD_1 =
-            BlockReg.of("jy290_head_1", FullShapeDirectionalBlock::new).setParent(GROUP_JY290);
+            BlockReg.of("jy290_head_1", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("jy290_head_1")
+                    .setParent(GROUP_JY290);
     public static final BlockReg<JY290CowCatcherBlock> JY290_COWCATCHER =
-            BlockReg.of("jy290_cowcatcher", JY290CowCatcherBlock::new).setParent(GROUP_JY290);
+            BlockReg.of("jy290_cowcatcher", JY290CowCatcherBlock::new)
+                    .withDefaultBlockItem("jy290_cowcatcher")
+                    .setParent(GROUP_JY290);
 
     public static final SlabReg<SlabBlock> JY290_FLOOR =
             new SlabReg<>("jy290_floor", p -> new SlabBlock(p, false)).setParent(GROUP_JY290);
@@ -39,7 +45,9 @@ public class IJY290Panel {
             new SlabReg<>("jy290_carport", p -> new SlabBlock(p, true)).setParent(GROUP_JY290);
 
     public static final BlockReg<FullShapeDirectionalBlock> JY290_EQUIPMENT =
-            BlockReg.of("jy290_equipment", FullShapeDirectionalBlock::new).setParent(GROUP_JY290);
+            BlockReg.of("jy290_equipment", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("jy290_equipment")
+                    .setParent(GROUP_JY290);
 
     public static final PanelReg<TrainHingePanelBlock> JY290_PANEL =
             new PanelReg<>("jy290_panel", p -> new TrainHingePanelBlock(p, new Vec2(-1, 0), new Vec2(1, 2))).setParent(GROUP_JY290);
@@ -47,7 +55,9 @@ public class IJY290Panel {
             new PanelReg<>("jy290_panel_logo", p -> new TrainHingePanelBlock(p, new Vec2(-1, 0), new Vec2(1, 2))).setParent(GROUP_JY290);
 
     public static final BlockReg<JY290ACBlock> JY290_AC =
-            BlockReg.of("jy290_ac", JY290ACBlock::new).setParent(GROUP_JY290);
+            BlockReg.of("jy290_ac", JY290ACBlock::new)
+                    .withDefaultBlockItem("jy290_ac")
+                    .setParent(GROUP_JY290);
 
     public static final SlabReg<SlabBlock> JY290_VENT =
             new SlabReg<>("jy290_vent", p -> new SlabBlock(p, true)).setParent(GROUP_JY290);

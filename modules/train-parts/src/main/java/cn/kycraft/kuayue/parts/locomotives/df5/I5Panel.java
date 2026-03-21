@@ -25,13 +25,21 @@ public class I5Panel {
             ).setParent(KuaYueTrainPanelModule.REGISTRY_GROUP);
 
     public static final BlockReg<FullShapeDirectionalBlock> DF5_END_FACE_1 =
-            BlockReg.of("df5_end_face_1", FullShapeDirectionalBlock::new).setParent(GROUP_DF5);
+            BlockReg.of("df5_end_face_1", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("df5_end_face_1")
+                    .setParent(GROUP_DF5);
     public static final BlockReg<FullShapeDirectionalBlock> DF5_END_FACE_2 =
-            BlockReg.of("df5_end_face_2", FullShapeDirectionalBlock::new).setParent(GROUP_DF5);
+            BlockReg.of("df5_end_face_2", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("df5_end_face_2")
+                    .setParent(GROUP_DF5);
     public static final BlockReg<DF5CowCatcherBlock> DF5_COWCATCHER =
-            BlockReg.of("df5_cowcatcher", DF5CowCatcherBlock::new).setParent(GROUP_DF5);
+            BlockReg.of("df5_cowcatcher", DF5CowCatcherBlock::new)
+                    .withDefaultBlockItem("df5_cowcatcher")
+                    .setParent(GROUP_DF5);
     public static final BlockReg<FullShapeDirectionalBlock> DF5_FUEL_TANK =
-            BlockReg.of("df5_fuel_tank", FullShapeDirectionalBlock::new).setParent(GROUP_DF5);
+            BlockReg.of("df5_fuel_tank", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("df5_fuel_tank")
+                    .setParent(GROUP_DF5);
 
     public static final SlabReg<SlabBlock> DF5_FLOOR =
             new SlabReg<>("df5_floor", p -> new SlabBlock(p, false)).setParent(GROUP_DF5);

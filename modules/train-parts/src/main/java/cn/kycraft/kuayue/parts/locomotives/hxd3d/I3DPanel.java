@@ -48,13 +48,21 @@ public class I3DPanel {
             )).setParent(GROUP_HXD3D);
 
     public static final BlockReg<HeightSlabBlock> FLOOR_HXD3D =
-            BlockReg.of("floor_hxd3d", HeightSlabBlock::new).setParent(GROUP_HXD3D);
+            BlockReg.of("floor_hxd3d", HeightSlabBlock::new)
+                    .withDefaultBlockItem("floor_hxd3d")
+                    .setParent(GROUP_HXD3D);
     public static final BlockReg<FullShapeDirectionalBlock> HEAD_HXD3D =
-            BlockReg.of("head_hxd3d", FullShapeDirectionalBlock::new).setParent(GROUP_HXD3D);
+            BlockReg.of("head_hxd3d", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("head_hxd3d")
+                    .setParent(GROUP_HXD3D);
     public static final BlockReg<HXD3DCowCatcherBlock> HXD3D_COWCATCHER =
-            BlockReg.of("hxd3d_cowcatcher", HXD3DCowCatcherBlock::new).setParent(GROUP_HXD3D);
+            BlockReg.of("hxd3d_cowcatcher", HXD3DCowCatcherBlock::new)
+                    .withDefaultBlockItem("hxd3d_cowcatcher")
+                    .setParent(GROUP_HXD3D);
     public static final BlockReg<SingleArmPantographBlock> HXD3D_PANTOGRAPH =
-            BlockReg.of("hxd3d_pantograph", SingleArmPantographBlock::new).setParent(GROUP_HXD3D);
+            BlockReg.of("hxd3d_pantograph", SingleArmPantographBlock::new)
+                    .withDefaultBlockItem("hxd3d_pantograph")
+                    .setParent(GROUP_HXD3D);
 
     public static final SlabReg<SlabBlock> HXD3D_CARPORT =
             new SlabReg<>("hxd3d_carport", p -> new SlabBlock(p, true)).setParent(GROUP_HXD3D);

@@ -44,7 +44,9 @@ public class ISS3Panel {
     public static final SlabReg<SlabBlock> SS3_FLOOR_CENTER = new SlabReg<>("ss3_floor_center", p -> new SlabBlock(p, false)).setParent(GROUP_SS3);
     public static final SlabReg<SlabBlock> SS3_TRANSFORMER = new SlabReg<>("ss3_transformer", p -> new SlabBlock(p, false)).setParent(GROUP_SS3);
 
-    public static final BlockReg<HeadBlock> SS3_HEAD = BlockReg.of("ss3_head", HeadBlock::new).setParent(GROUP_SS3);
+    public static final BlockReg<HeadBlock> SS3_HEAD = BlockReg.of("ss3_head", HeadBlock::new)
+            .withDefaultBlockItem("ss3_head")
+            .setParent(GROUP_SS3);
 
     public static final PanelReg<CustomRenderedDoorBlock> SS3_DOOR =
             new PanelReg<>("ss3_door", p -> new CustomRenderedDoorBlock(
@@ -63,5 +65,7 @@ public class ISS3Panel {
                     false
             )).setParent(GROUP_SS3);
 
-    public static final BlockReg<SS3CowCatcherBlock> SS3_COWCATCHER = BlockReg.of("ss3_cowcatcher", SS3CowCatcherBlock::new).setParent(GROUP_SS3);
+    public static final BlockReg<SS3CowCatcherBlock> SS3_COWCATCHER = BlockReg.of("ss3_cowcatcher", SS3CowCatcherBlock::new)
+            .withDefaultBlockItem("ss3_cowcatcher")
+            .setParent(GROUP_SS3);
 }

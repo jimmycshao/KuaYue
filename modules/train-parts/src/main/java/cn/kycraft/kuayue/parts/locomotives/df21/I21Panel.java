@@ -31,10 +31,14 @@ public class I21Panel {
             ).setParent(KuaYueTrainPanelModule.REGISTRY_GROUP);
 
     public static final BlockReg<DF21HeadBlock> HEAD_DF21 =
-            BlockReg.of("head_df21", DF21HeadBlock::new).setParent(GROUP_DF21);
+            BlockReg.of("head_df21", DF21HeadBlock::new)
+                    .withDefaultBlockItem("head_df21")
+                    .setParent(GROUP_DF21);
 
     public static final BlockReg<DF21HeadEarlyBlock> HEAD_EARLY_DF21 =
-            BlockReg.of("head_early_df21", DF21HeadEarlyBlock::new).setParent(GROUP_DF21);
+            BlockReg.of("head_early_df21", DF21HeadEarlyBlock::new)
+                    .withDefaultBlockItem("head_early_df21")
+                    .setParent(GROUP_DF21);
 
     public static final SlabReg<TrainPanelShapes.CarportHingeSlabBlock> EXHAUST_FAN_DF21 =
             new SlabReg<>("exhaust_fan_df21", p -> new TrainPanelShapes.CarportHingeSlabBlock(p, true)).setParent(GROUP_DF21);
@@ -98,5 +102,7 @@ public class I21Panel {
             new PanelReg<>("general_bottom_slab_df21", p -> new TrainHingePanelBlock(p, new Vec2(0, 0), new Vec2(1, 1))).setParent(GROUP_DF21);
 
     public static final BlockReg<FullShapeDirectionalBlock> FUEL_TANK_DF21 =
-            BlockReg.of("fuel_tank_df21", FullShapeDirectionalBlock::new).setParent(GROUP_DF21);
+            BlockReg.of("fuel_tank_df21", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("fuel_tank_df21")
+                    .setParent(GROUP_DF21);
 }

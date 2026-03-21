@@ -76,11 +76,17 @@ public class I11GPanel {
             )).setParent(GROUP_DF11G);
 
     public static final BlockReg<DF11GCowCatcherBlock> COWCATCHER_DF11G =
-            BlockReg.of("cowcatcher_df11g", DF11GCowCatcherBlock::new).setParent(GROUP_DF11G);
+            BlockReg.of("cowcatcher_df11g", DF11GCowCatcherBlock::new)
+                    .withDefaultBlockItem("cowcatcher_df11g")
+                    .setParent(GROUP_DF11G);
     public static final BlockReg<FullShapeDirectionalBlock> HEAD_DF11G_2 =
-            BlockReg.of("head_df11g_2", FullShapeDirectionalBlock::new).setParent(GROUP_DF11G);
+            BlockReg.of("head_df11g_2", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("head_df11g_2")
+                    .setParent(GROUP_DF11G);
     public static final BlockReg<FullShapeDirectionalBlock> DF11G_TANK =
-            BlockReg.of("df11g_tank", FullShapeDirectionalBlock::new).setParent(GROUP_DF11G);
+            BlockReg.of("df11g_tank", FullShapeDirectionalBlock::new)
+                    .withDefaultBlockItem("df11g_tank")
+                    .setParent(GROUP_DF11G);
 
     public static final SlabReg<SlabBlock> FLOOR_DF11G =
             new SlabReg<>("floor_df11g", p -> new SlabBlock(p, false)).setParent(GROUP_DF11G);
