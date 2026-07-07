@@ -1,6 +1,5 @@
-package cn.kycraft.kuayue.parts.carriages.c22;
+package cn.kycraft.kuayue.parts.core.panel;
 
-import cn.kycraft.kuayue.parts.core.panel.SlabBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
