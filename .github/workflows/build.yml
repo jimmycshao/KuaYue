@@ -11,12 +11,21 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
+          path: Kuayue
+
+      - name: Checkout KasugaLibNext
+        uses: actions/checkout@v4
+        with:
+          repository: KasugaLibGroup/KasugaLibNext
+          fetch-depth: 0
+          fetch-tags: true
+          path: KasugaLibNext
 
       - name: Setup JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
-          distribution: 'temurin'
+          java-version: "21"
+          distribution: "temurin"
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
