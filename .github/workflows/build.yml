@@ -11,7 +11,7 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
-          path: Kuayue
+          path: KuaYue
 
       - name: Checkout KasugaLibNext
         uses: actions/checkout@v4
@@ -33,7 +33,9 @@ jobs:
       # This is needed to be able to run ./gradlew below
       # You can run `git update-index --chmod +x gradlew` then remove this step.
       - name: Make Gradle wrapper executable
+        working-directory: KuaYue
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
+        working-directory: KuaYue
         run: ./gradlew build
