@@ -36,6 +36,10 @@ jobs:
         working-directory: KuaYue
         run: chmod +x ./gradlew
 
+      - name: Pre-warm Minecraft artifacts
+        working-directory: KuaYue
+        run: ./gradlew :modules:core:createMinecraftArtifacts
+
       - name: Build with Gradle
         working-directory: KuaYue
         run: ./gradlew build
