@@ -259,6 +259,48 @@ tasks.shadowJar {
     relocate 'com.google.gson', 'com.kuayue.shaded.com.google.gson'
     relocate 'lib.kasuga.inject', 'lib.kasuga.vendors.inject'
 
+      // A. 排除 Flywheel 的 Mixin 配置文件（这些文件如果存在，会导致游戏尝试加载 Flywheel 的 Mixin，从而崩溃）
+    exclude 'flywheel.mixins.json'
+    exclude 'flywheel.impl.mixins.json'
+    exclude 'flywheel.backend.mixins.json'
+    exclude 'flywheel.refmap.json'
+    
+    // B. 排除 Create/Ponder 的相关配置（如果它们也被错误打包）
+    exclude 'create.mixins.json'
+    exclude 'ponder.mixins.json'
+    exclude 'ponder-common.mixins.json'
+    
+    // C. 排除 NeoForge/Minecraft 的核心配置
+    exclude 'neoforge.mixins.json'
+    exclude 'neoforged_logo.png'
+    exclude 'neoforged_icon.png'
+    exclude 'mcplogo.png'
+    exclude 'forge.exc'
+    exclude 'forge.sas'
+    exclude 'forge.srg'
+    
+    // D. 排除其他模组的专属资源（根据你之前的目录列表）
+    exclude 'fox_running.png'
+    exclude 'squirrel.png'
+    exclude 'url.png'
+    exclude 'Monocraft.ttf'
+    exclude 'flightrecorder-config.jfc'
+    exclude 'log4j2.xml'
+    exclude 'Log4j-*.properties'
+    exclude 'Log4j-*.xsd'
+    exclude 'Log4j-*.dtd'
+    exclude 'oshi.properties'
+    exclude 'oshi.*.properties'
+    
+    // E. 排除整个包路径（仅针对代码类，不影响 assets）
+    // 注意：exclude 'dev/engine_room/**' 会排除该包下的所有 class 和 resources。
+    // 如果你已经 relocate 了 dev.engine_room.flywheel，那么原始的 dev/engine_room/** 应该已经被清空了。
+    // 但为了保险，可以保留此排除，它不会误伤 assets，因为 assets 在 assets/ 目录下，不在 dev/ 目录下。
+    exclude 'dev/engine_room/**' 
+    exclude 'com/simibubi/**'
+    exclude 'net/createmod/**'
+    exclude 'com/tterrag/**'
+
     configurations = [
         project.project.configurations.runtimeClasspath,
         project.configurations.additionalRuntimeClasspath 
