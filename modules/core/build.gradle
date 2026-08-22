@@ -246,9 +246,8 @@ tasks.shadowJar {
 
     // ⭐ 关键：执行重定位
     relocate 'io.micronaut', 'cn.kycraft.kuayue.shaded.io.micronaut'
-    //relocate 'lib.kasuga.inject', 'lib.kasuga.vendors.inject'
+    relocate 'lib.kasuga.inject', 'lib.kasuga.vendors.inject'
     
     // 合并 SPI 服务文件，否则 Micronaut 无法发现 Bean
     mergeServiceFiles()
-}
 }
