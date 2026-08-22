@@ -110,7 +110,7 @@ configurations {
 }
 
 dependencies {
-    conpileOnly ("io.micronaut:micronaut-inject:4.9.10") {
+    compileOnly ("io.micronaut:micronaut-inject:4.9.10") {
         exclude group : 'org.slf4j', module: 'slf4j-api'
     }
 
