@@ -202,6 +202,13 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
 
+tasks.named('shadowJar') {
+    // 确保 train-parts 的代码和资源已编译/处理完毕
+    dependsOn ':modules:train-parts:classes'
+    // 确保 scheduling 的代码和资源已编译/处理完毕
+    dependsOn ':modules:scheduling:classes'
+}
+
 tasks.shadowJar {
     zip64 = true
         // 明确指定仅包含shadowLibrary配置的依赖，避免继承多余的runtime依赖
