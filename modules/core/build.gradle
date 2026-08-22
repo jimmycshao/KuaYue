@@ -110,7 +110,7 @@ configurations {
 }
 
 dependencies {
-    compileOnly ("io.micronaut:micronaut-inject:4.9.10") {
+    shadowLibrary ("io.micronaut:micronaut-inject:4.9.10") {
         exclude group : 'org.slf4j', module: 'slf4j-api'
     }
 
@@ -301,7 +301,7 @@ tasks.shadowJar {
     // 并且注释掉上面的 exclude 'com/google/**'
     
     relocate 'lib.kasuga.inject', 'lib.kasuga.vendors.inject'
-    relocate 'io.micronaut', 'lib.kasuga.vendors.io.micronaut'
+    //relocate 'io.micronaut', 'lib.kasuga.vendors.io.micronaut'
     configurations = [project.configurations.shadowLibrary]
 
     mergeServiceFiles()
