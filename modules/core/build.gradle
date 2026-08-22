@@ -202,75 +202,49 @@ tasks.shadowJar {
         // 明确指定仅包含shadowLibrary配置的依赖，避免继承多余的runtime依赖
     configurations = [project.configurations.shadowLibrary]
     // 追加全局排除规则，确保所有前置和加载器内容完全不被打包
-    exclude 'net/neoforged/**'
-    exclude 'net/minecraft/**'
-    exclude 'cpw/mods/**'
-    exclude 'com/simibubi/create/**'
-    exclude 'net/createmod/ponder/**'
-    exclude 'com/tterrag/registrate/**'
-    exclude 'dev/engine_room/flywheel/**'
-    exclude 'org/apache/logging/log4j/**'
-    exclude 'META-INF/services/net.neoforged/**'
-    exclude 'META-INF/services/com/simibubi/create/**'
-    exclude 'META-INF/services/cpw/**'
-    //exclude 'org/**'       // 排除 org.apache, org.jgrapht, org.jheaps, org.apfloat 等
-    //exclude 'com/google/**' // 排除 Gson, Guava 等
-    //exclude 'it/unimi/**'   // 排除 fastutil 等
-    //exclude 'javax/**'      // 排除 javax 相关
-
-    exclude 'net/minecraft/**'          // Minecraft 核心
-    exclude 'net/neoforged/**'          // NeoForge 核心
-    exclude 'cpw/mods/**'               // ModLauncher
-    exclude 'com/simibubi/create/**'    // Create 模组
-    exclude 'net/createmod/ponder/**'   // Ponder 模组
-    exclude 'dev/engine_room/flywheel/**' // Flywheel 模组
-    exclude 'com/tterrag/registrate/**' // Registrate 库
+     // ==========================================
+    // 1. 【核心代码】排除游戏核心、前置模组及加载器
+    // ==========================================
+    exclude 'net/minecraft/**'          // Minecraft 核心 (合并了重复项)
+    exclude 'net/neoforged/**'          // NeoForge 核心 (合并了重复项)
+    exclude 'cpw/mods/**'               // ModLauncher (合并了重复项)
     
-    // 2. 【致命】排除游戏自带的第三方库
-    exclude 'org/apache/**'             // Log4j, Commons 等
+    // 前置模组代码 (合并了重复项，使用更通用的父级路径以覆盖子模块)
+    exclude 'com/simibubi/**'           // 覆盖 Create 及其子包
+    exclude 'net/createmod/**'          // 覆盖 Ponder 及其子包
+    exclude 'dev/engine_room/**'        // 覆盖 Flywheel 及其子包
+    exclude 'com/tterrag/**'            // 覆盖 Registrate (合并了重复项)
+
+    // ==========================================
+    // 2. 【第三方库】排除游戏自带或冲突库
+    // ==========================================
+    // 注意：org/apache/** 已经包含了 log4j，无需单独写 log4j 路径
+    exclude 'org/apache/**'             // Log4j, Commons, HttpClient 等
     exclude 'org/slf4j/**'              // SLF4J
     exclude 'org/lwjgl/**'              // LWJGL
-    exclude 'com/google/**'             // Gson, Guava (游戏自带)
-    exclude 'it/unimi/**'               // FastUtil (游戏自带)
-    exclude 'oshi/**'                   // OSHI (游戏自带)
-    exclude 'mozilla/**'                // Rhino 等
+    exclude 'com/google/**'             // Gson, Guava (除非你重定位了 gson，否则建议排除游戏自带的)
+    exclude 'it/unimi/**'               // FastUtil
+    exclude 'oshi/**'                   // OSHI
+    exclude 'mozilla/**'                // Rhino
     exclude 'javax/**'                  // Java EE
-    exclude 'jakarta/**'                // Jakarta EE (除非你重定位了 Micronaut 的依赖)
+    // jakarta/** 需谨慎：如果你重定位了 jakarta.inject，则不需要排除整个 jakarta 包
+    // 如果未重定位且游戏自带 jakarta，则排除；如果重定位了，保留重定位规则即可，无需排除
     
-    // 3. 【清理】排除无用资源和文档
-    exclude 'linux/**'
-    exclude 'reports/**'
-    exclude 'licenses/**'
-    exclude 'LICENSE*'
-    exclude '*.txt'
-    exclude '*.md'
-    exclude 'META-INF/*.SF'
-    exclude 'META-INF/*.DSA'
-    exclude 'META-INF/*.RSA'
-    exclude 'META-INF/MANIFEST.MF'      // Shadow 会自动生成新的
+    // ==========================================
+    // 3. 【精准清理】排除根目录残留的配置文件和资源
+    // ==========================================
+    // 这些文件不在上述包路径下，必须单独排除
     
-    // 4. 【关键】保留并重定位你自己的依赖
-    // 确保 Micronaut 等库被重定位到私有包名，而不是直接暴露在 io/org 下
-    relocate 'io.micronaut', 'cn.kycraft.kuayue.shaded.io.micronaut'
-    relocate 'jakarta.inject', 'cn.kycraft.kuayue.shaded.jakarta.inject'
-    relocate 'org.apfloat', 'cn.kycraft.kuayue.shaded.org.apfloat'
-    relocate 'org.jgrapht', 'cn.kycraft.kuayue.shaded.org.jgrapht'
-    relocate 'org.jheaps', 'cn.kycraft.kuayue.shaded.org.jheaps'
-    relocate 'com.google.gson', 'com.kuayue.shaded.com.google.gson'
-    relocate 'lib.kasuga.inject', 'lib.kasuga.vendors.inject'
-
-      // A. 排除 Flywheel 的 Mixin 配置文件（这些文件如果存在，会导致游戏尝试加载 Flywheel 的 Mixin，从而崩溃）
+    // Flywheel/Create/Ponder 配置
     exclude 'flywheel.mixins.json'
     exclude 'flywheel.impl.mixins.json'
     exclude 'flywheel.backend.mixins.json'
     exclude 'flywheel.refmap.json'
-    
-    // B. 排除 Create/Ponder 的相关配置（如果它们也被错误打包）
     exclude 'create.mixins.json'
     exclude 'ponder.mixins.json'
     exclude 'ponder-common.mixins.json'
     
-    // C. 排除 NeoForge/Minecraft 的核心配置
+    // NeoForge/Minecraft 配置
     exclude 'neoforge.mixins.json'
     exclude 'neoforged_logo.png'
     exclude 'neoforged_icon.png'
@@ -279,7 +253,7 @@ tasks.shadowJar {
     exclude 'forge.sas'
     exclude 'forge.srg'
     
-    // D. 排除其他模组的专属资源（根据你之前的目录列表）
+    // 其他杂乱资源
     exclude 'fox_running.png'
     exclude 'squirrel.png'
     exclude 'url.png'
@@ -291,16 +265,42 @@ tasks.shadowJar {
     exclude 'Log4j-*.dtd'
     exclude 'oshi.properties'
     exclude 'oshi.*.properties'
-    
-    // E. 排除整个包路径（仅针对代码类，不影响 assets）
-    // 注意：exclude 'dev/engine_room/**' 会排除该包下的所有 class 和 resources。
-    // 如果你已经 relocate 了 dev.engine_room.flywheel，那么原始的 dev/engine_room/** 应该已经被清空了。
-    // 但为了保险，可以保留此排除，它不会误伤 assets，因为 assets 在 assets/ 目录下，不在 dev/ 目录下。
-    exclude 'dev/engine_room/**' 
-    exclude 'com/simibubi/**'
-    exclude 'net/createmod/**'
-    exclude 'com/tterrag/**'
 
+    // ==========================================
+    // 4. 【元数据清理】排除签名和文档
+    // ==========================================
+    exclude 'linux/**'
+    exclude 'reports/**'
+    exclude 'licenses/**'
+    exclude 'LICENSE*'
+    exclude '*.txt'
+    exclude '*.md'
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+    exclude 'META-INF/MANIFEST.MF'
+    
+    // 可选：排除特定的 SPI 服务文件（如果担心冲突）
+    // 通常 mergeServiceFiles() 会处理大部分情况，但如果特定服务导致冲突，可在此排除
+    // exclude 'META-INF/services/net.neoforged.**'
+    // exclude 'META-INF/services/com.simibubi.**'
+
+    // ==========================================
+    // 5. 【关键】重定位你自己的依赖
+    // ==========================================
+    relocate 'io.micronaut', 'cn.kycraft.kuayue.shaded.io.micronaut'
+    relocate 'jakarta.inject', 'cn.kycraft.kuayue.shaded.jakarta.inject'
+    relocate 'org.apfloat', 'cn.kycraft.kuayue.shaded.org.apfloat'
+    relocate 'org.jgrapht', 'cn.kycraft.kuayue.shaded.org.jgrapht'
+    relocate 'org.jheaps', 'cn.kycraft.kuayue.shaded.org.jheaps'
+    
+    // 注意：如果你排除了 com/google/**，就不要重定位 com.google.gson，否则会导致类找不到
+    // 建议：要么排除 com/google/** 并使用游戏自带的 Gson，要么重定位 com.google.gson 并不要排除它
+    // 这里假设你希望使用重定位后的 Gson：
+    // relocate 'com.google.gson', 'cn.kycraft.kuayue.shaded.com.google.gson' 
+    // 并且注释掉上面的 exclude 'com/google/**'
+    
+    relocate 'lib.kasuga.inject', 'lib.kasuga.vendors.inject'
     configurations = [
         project.project.configurations.runtimeClasspath,
         project.configurations.additionalRuntimeClasspath 
