@@ -153,8 +153,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    compileOnly project(':modules:train-parts')
-    compileOnly project(':modules:scheduling')
+    runtimeOnly project(':modules:train-parts')
+    runtimeOnly project(':modules:scheduling')
 
 }
 
