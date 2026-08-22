@@ -16,7 +16,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: '17' # 根据你的项目需求调整版本
+          java-version: '21' # 根据你的项目需求调整版本
           distribution: 'temurin'
 
       # --- 关键步骤：清除本地 Gradle 缓存 ---
