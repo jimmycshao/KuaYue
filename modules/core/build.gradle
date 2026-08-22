@@ -206,7 +206,9 @@ tasks.withType(JavaCompile).configureEach {
 tasks.shadowJar {
     zip64 = true
         // 明确指定仅包含shadowLibrary配置的依赖，避免继承多余的runtime依赖
-    configurations = [project.configurations.shadowLibrary, project.configurations.shadowBundle]
+    configurations = [project.configurations.shadowLibrary]
+    from(project(':modules:train-parts').sourceSets.main.output)
+    from(project(':modules:scheduling').sourceSets.main.output)
     // 追加全局排除规则，确保所有前置和加载器内容完全不被打包
      // ==========================================
     // 1. 【核心代码】排除游戏核心、前置模组及加载器
