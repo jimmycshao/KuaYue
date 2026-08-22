@@ -199,4 +199,56 @@ tasks.withType(JavaCompile).configureEach {
 
 tasks.shadowJar {
     zip64 = true
+        // 明确指定仅包含shadowLibrary配置的依赖，避免继承多余的runtime依赖
+    configurations = [project.configurations.shadowLibrary]
+    // 追加全局排除规则，确保所有前置和加载器内容完全不被打包
+    exclude 'net/neoforged/**'
+    exclude 'net/minecraft/**'
+    exclude 'cpw/mods/**'
+    exclude 'com/simibubi/create/**'
+    exclude 'net/createmod/ponder/**'
+    exclude 'com/tterrag/registrate/**'
+    exclude 'dev/engine_room/flywheel/**'
+    exclude 'org/apache/logging/log4j/**'
+    exclude 'META-INF/services/net.neoforged/**'
+    exclude 'META-INF/services/com/simibubi/create/**'
+    exclude 'META-INF/services/cpw/**'
+    // exclude 'org/jgrapht/**'
+    // exclude 'org/jheaps/**'
+    // exclude 'org/apfloat/**'
+    //exclude 'org/**'       // 排除 org.apache, org.jgrapht, org.jheaps, org.apfloat 等
+    //exclude 'com/google/**' // 排除 Gson, Guava 等
+    //exclude 'it/unimi/**'   // 排除 fastutil 等
+    //exclude 'javax/**'      // 排除 javax 相关
+
+        // 1. 重定位 apfloat 及其相关依赖
+    // 将所有 org.apfloat 开头的类移动到 com.kuayue.shaded.org.apfloat
+    relocate 'org.apfloat', 'com.kuayue.shaded.org.apfloat'
+    
+    // 2. 如果还有其他冲突库（如 jheaps, jgrapht），也一起重定位
+    relocate 'org.jheaps', 'com.kuayue.shaded.org.jheaps'
+    relocate 'org.jgrapht', 'com.kuayue.shaded.org.jgrapht'
+    
+    // 3. 可选：重定位其他常见冲突库
+    relocate 'com.google.gson', 'com.kuayue.shaded.com.google.gson'
+    
+    // 注意：不再需要 exclude 'org/apfloat/**'，因为 relocate 会处理它们
+    // 但为了保险，可以保留对其他无关大包的排除
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+    //解决缺少micronaut的问题
+        // ⭐ 关键：必须显式包含所有需要打包的配置
+    configurations = [
+        project.project.configurations.runtimeClasspath,
+        project.configurations.additionalRuntimeClasspath 
+    ]
+
+    // ⭐ 关键：执行重定位
+    relocate 'io.micronaut', 'cn.kycraft.kuayue.shaded.io.micronaut'
+    //relocate 'lib.kasuga.inject', 'lib.kasuga.vendors.inject'
+    
+    // 合并 SPI 服务文件，否则 Micronaut 无法发现 Bean
+    mergeServiceFiles()
+}
 }
