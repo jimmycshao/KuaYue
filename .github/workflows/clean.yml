@@ -1,0 +1,36 @@
+name: clean
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # 允许手动触发，方便测试
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17' # 根据你的项目需求调整版本
+          distribution: 'temurin'
+
+      # --- 关键步骤：清除本地 Gradle 缓存 ---
+      - name: Clean Gradle Cache
+        run: |
+          echo "Removing Gradle user home to clear build and dependency caches..."
+          rm -rf $HOME/.gradle/caches/
+          rm -rf $HOME/.gradle/wrapper/
+          # 如果项目根目录有 .gradle 文件夹，也删除
+          rm -rf .gradle/
+          echo "Cache cleared."
+
+      # --- 可选：如果你使用了 actions/cache 插件，也需要清理它 ---
+      # 注意：如果你没有显式使用 actions/cache 来缓存 .gradle 文件夹，
+      # 上面的 rm -rf 已经足够了。如果你用了 actions/cache，请参考方案二。
+
+
