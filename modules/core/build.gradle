@@ -301,7 +301,7 @@ tasks.shadowJar {
     // 并且注释掉上面的 exclude 'com/google/**'
     
     relocate 'lib.kasuga.inject', 'lib.kasuga.vendors.inject'
-    configurations = [project.configurations.shadowLibrary, project.configurations.complementation]
+    configurations = [project.configurations.shadowLibrary, project.configurations.implementation]
 
     mergeServiceFiles()
 }
