@@ -47,7 +47,7 @@ jobs:
 
       - name: Build with Gradle
         working-directory: KuaYue
-        run: ./gradlew build
+        run: ./gradlew clean build --no-build-cache
 
       - name: Upload KuaYue
         uses: actions/upload-artifact@v4
