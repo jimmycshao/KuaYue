@@ -307,7 +307,7 @@ tasks.shadowJar {
     
     relocate 'lib.kasuga.inject', 'lib.kasuga.vendors.inject'
     relocate 'io.micronaut', 'lib.kasuga.vendors.io.micronaut'
-    configurations = [project.configurations.shadowLibrary]
+    //configurations = [project.configurations.shadowLibrary]
 
     mergeServiceFiles()
 }
