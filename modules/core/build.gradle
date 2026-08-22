@@ -124,7 +124,7 @@ dependencies {
 
     annotationProcessor 'io.micronaut:micronaut-inject-java:4.9.10'
 
-    shadowLibrary("lib.kasuga:kasuga_lib:1.0.0") {
+    compileOnly("lib.kasuga:kasuga_lib:1.0.0") {
         useBundle(delegate)
         exclude group: 'com.simibubi.create', module: "create-${minecraft_version}"
         exclude group: 'net.createmod.ponder', module: "Ponder-NeoForge-${minecraft_version}"
@@ -135,7 +135,7 @@ dependencies {
         transitive = false
     }
 
-    shadowLibrary("lib.kasuga:inject:1.0.0"){
+    compileOnly("lib.kasuga:inject:1.0.0"){
         transitive = false
     }
 
