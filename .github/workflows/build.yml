@@ -1,6 +1,7 @@
 name: Build
 
-on: [push, pull_request]
+on: 
+  workflow_dispatch: 
 
 jobs:
   build:
@@ -47,3 +48,5 @@ jobs:
       - name: Build with Gradle
         working-directory: KuaYue
         run: ./gradlew build
+
+        
