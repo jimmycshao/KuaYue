@@ -110,7 +110,7 @@ configurations {
 }
 
 dependencies {
-    implementation ("io.micronaut:micronaut-inject:4.9.10") {
+    shadowLibrary ("io.micronaut:micronaut-inject:4.9.10") {
         exclude group : 'org.slf4j', module: 'slf4j-api'
     }
 
@@ -124,7 +124,7 @@ dependencies {
 
     annotationProcessor 'io.micronaut:micronaut-inject-java:4.9.10'
 
-    implementation("lib.kasuga:kasuga_lib:1.0.0") {
+    shadowLibrary("lib.kasuga:kasuga_lib:1.0.0") {
         useBundle(delegate)
         exclude group: 'com.simibubi.create', module: "create-${minecraft_version}"
         exclude group: 'net.createmod.ponder', module: "Ponder-NeoForge-${minecraft_version}"
@@ -135,7 +135,7 @@ dependencies {
         transitive = false
     }
 
-    implementation("lib.kasuga:inject:1.0.0"){
+    shadowLibrary("lib.kasuga:inject:1.0.0"){
         transitive = false
     }
 
@@ -144,7 +144,7 @@ dependencies {
     compileOnly("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
     //compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
     compileOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
-    implementation("com.tterrag.registrate:Registrate:${registrate_version}")
+    shadowLibrary("com.tterrag.registrate:Registrate:${registrate_version}")
 
     additionalRuntimeClasspath 'org.jgrapht:jgrapht-core:1.5.2'
     shadowLibrary 'org.jgrapht:jgrapht-core:1.5.2'
