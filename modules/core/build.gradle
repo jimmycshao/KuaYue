@@ -110,7 +110,7 @@ configurations {
 }
 
 dependencies {
-    shadowLibrary ("io.micronaut:micronaut-inject:4.9.10") {
+    compileOnly ("io.micronaut:micronaut-inject:4.9.10") {
         exclude group : 'org.slf4j', module: 'slf4j-api'
     }
 
@@ -288,7 +288,7 @@ tasks.shadowJar {
     // ==========================================
     // 5. 【关键】重定位你自己的依赖
     // ==========================================
-    relocate 'io.micronaut', 'cn.kycraft.kuayue.shaded.io.micronaut'
+    //relocate 'io.micronaut', 'cn.kycraft.kuayue.shaded.io.micronaut'
     relocate 'jakarta.inject', 'cn.kycraft.kuayue.shaded.jakarta.inject'
     relocate 'org.apfloat', 'cn.kycraft.kuayue.shaded.org.apfloat'
     relocate 'org.jgrapht', 'cn.kycraft.kuayue.shaded.org.jgrapht'
@@ -301,7 +301,7 @@ tasks.shadowJar {
     // 并且注释掉上面的 exclude 'com/google/**'
     
     relocate 'lib.kasuga.inject', 'lib.kasuga.vendors.inject'
-    //relocate 'io.micronaut', 'lib.kasuga.vendors.io.micronaut'
+    relocate 'io.micronaut', 'lib.kasuga.vendors.io.micronaut'
     configurations = [project.configurations.shadowLibrary]
 
     mergeServiceFiles()
