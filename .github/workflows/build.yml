@@ -49,14 +49,14 @@ jobs:
         working-directory: KuaYue
         run: ./gradlew build
 
-      - name: Upload ky
+      - name: Upload KuaYue
         uses: actions/upload-artifact@v4
         with:
-          name: my-artifact
+          name: KuaYue-Build
           path: KuaYue/modules/core/build/libs/*.jar
 
-      - name: Upload kln
+      - name: Upload KasugaLibNext
         uses: actions/upload-artifact@v4
         with:
-          name: my-artifact
+          name: KasugaLibNext-Build
           path: KasugaLibNext/modules/core/build/libs/*.jar
